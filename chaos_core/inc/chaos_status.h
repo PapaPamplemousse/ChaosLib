@@ -86,6 +86,21 @@ typedef enum
     CHAOS_MEM_UNKNOWN     = 0xFFU  /**< Generic or unidentified memory error */
 } chaos_memory_code_t;
 
+/**
+ * @brief Specific error codes for the CHAOS_MODULE_STRING.
+ * These codes are intended to be used in the 'code' field of a #chaos_status_t
+ * when the module is set to #CHAOS_MODULE_STRING.
+ */
+typedef enum
+{
+    CHAOS_STRING_OK           = 0x00U, /**< Everything is fine */
+    CHAOS_STRING_NULL_PTR     = 0x01U, /**< Pointer is NULL */
+    CHAOS_STRING_SIZE_ZERO    = 0x02U, /**< Size is zero */
+    CHAOS_STRING_TRUNCATED    = 0x03U, /**< String was truncated */
+    CHAOS_STRING_NOT_FOUND    = 0x04U, /**< Substring not found */
+    CHAOS_STRING_UNKNOWN      = 0xFFU  /**< Generic unknown error */
+} chaos_string_code_t;
+
 
 /* ============================================================= */
 /* STATUS ENCODING                                               */

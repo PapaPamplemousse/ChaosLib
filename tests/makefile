@@ -4,7 +4,7 @@
 
 .PHONY: all test-all test-memory clean
 
-MODULES := memory
+MODULES := memory string
 
 # Default
 all: test-all
@@ -19,6 +19,9 @@ test-all:
 
 test-memory:
 	$(MAKE) -C memory run
+
+test-string:
+	$(MAKE) -C string run
 
 # ------------------------------------------------------------------------------
 

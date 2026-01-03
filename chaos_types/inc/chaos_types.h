@@ -117,6 +117,27 @@ typedef chaos_i32_t chaos_ptrdiff_t;
 #endif
 /** @} */
 
+/* ============================================================= */
+/* CHARACTER / STRING TYPES                                         */
+/* ============================================================= */
+
+/**
+ * @name Character and String Types
+ * @brief Explicit types for single characters and character buffers.
+ * @{
+ */
+
+/** @brief Single character type (8-bit). */
+typedef chaos_u8_t chaos_char_t;
+
+/** @brief Null-terminated string type pointer. */
+typedef chaos_char_t *chaos_cstr_t;
+
+/** @brief Define a null character for convenience. */
+#define CHAOS_CHAR_NULL ((chaos_char_t)0)
+
+/** @} */
+
 
 /* ============================================================= */
 /* COMPILE-TIME VALIDATION                     */
