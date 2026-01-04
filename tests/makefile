@@ -1,10 +1,18 @@
 # ==============================================================================
 # CHAOSLIB - Tests root Makefile
 # ==============================================================================
+include ../config.mk
 
-.PHONY: all test-all test-memory clean
+export CFLAGS_CONFIG := -DCHAOS_PTR_WIDTH=$(CHAOS_PTR_WIDTH) \
+                        -DCHAOS_ENABLE_ASSERT=$(CHAOS_ENABLE_ASSERT) \
+                        -DCHAOS_ENABLE_ALLOC=$(CHAOS_ENABLE_ALLOC) \
+                        -DCHAOS_ALLOC_ALIGNMENT=$(CHAOS_ALLOC_ALIGNMENT) \
+                        -DCHAOS_ENABLE_FLOAT=$(CHAOS_ENABLE_FLOAT) \
+                        -DCHAOS_ENABLE_INT64=$(CHAOS_ENABLE_INT64)
 
-MODULES := memory string
+.PHONY: all test-all test-memory test-alloc clean
+
+MODULES := memory string alloc
 
 # Default
 all: test-all
@@ -23,6 +31,8 @@ test-memory:
 test-string:
 	$(MAKE) -C string run
 
+test-alloc:
+	$(MAKE) -C alloc run
 # ------------------------------------------------------------------------------
 
 clean:

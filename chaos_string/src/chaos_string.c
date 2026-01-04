@@ -9,7 +9,6 @@
 /* ============================================================= */
 /* STRLEN                                                        */
 /* ============================================================= */
-
 chaos_status_t chaos_strlen(
     const chaos_cstr_t str,
     chaos_size_t *len
@@ -78,7 +77,6 @@ chaos_status_t chaos_strcpy(
 /* ============================================================= */
 /* STRCAT                                                        */
 /* ============================================================= */
-
 chaos_status_t chaos_strcat(
     chaos_cstr_t dst,
     const chaos_cstr_t src,
@@ -147,7 +145,6 @@ chaos_status_t chaos_strcat(
 /* ============================================================= */
 /* STRCMP                                                        */
 /* ============================================================= */
-
 chaos_status_t chaos_strcmp(
     const chaos_cstr_t str1,
     const chaos_cstr_t str2,
@@ -189,7 +186,6 @@ chaos_status_t chaos_strcmp(
 /* ============================================================= */
 /* STRSTR                                                        */
 /* ============================================================= */
-
 chaos_status_t chaos_strstr(
     const chaos_cstr_t str,
     const chaos_cstr_t substr,

@@ -23,7 +23,7 @@ INC_FLAGS := \
 
 # ------------------------------------------------------------------------------
 
-TEST_SRCS := memcpy.c memmove.c memcmp.c memset.c
+TEST_SRCS := alloc_get_free.c alloc_init.c alloc.c complete_alloc.c free.c integration_list.c
 TEST_BINS := $(TEST_SRCS:.c=)
 
 # ------------------------------------------------------------------------------

@@ -22,7 +22,7 @@
  * @param[in] str Input string pointer
  * @param[out] len Output length (excluding null terminator)
  */
-chaos_status_t chaos_strlen(
+extern chaos_status_t chaos_strlen(
     const chaos_cstr_t str,
     chaos_size_t *len
 );
@@ -33,7 +33,7 @@ chaos_status_t chaos_strlen(
  * @param[in] src Source string
  * @param[in] dst_size Size of destination buffer in bytes
  */
-chaos_status_t chaos_strcpy(
+extern chaos_status_t chaos_strcpy(
     chaos_cstr_t dst,
     const chaos_cstr_t src,
     chaos_size_t dst_size
@@ -45,7 +45,7 @@ chaos_status_t chaos_strcpy(
  * @param[in] src Source string
  * @param[in] dst_size Total size of destination buffer
  */
-chaos_status_t chaos_strcat(
+extern chaos_status_t chaos_strcat(
     chaos_cstr_t dst,
     const chaos_cstr_t src,
     chaos_size_t dst_size
@@ -57,7 +57,7 @@ chaos_status_t chaos_strcat(
  * @param[in] str2 Second string
  * @param[out] equal Output boolean: CHAOS_TRUE if equal, CHAOS_FALSE otherwise
  */
-chaos_status_t chaos_strcmp(
+extern chaos_status_t chaos_strcmp(
     const chaos_cstr_t str1,
     const chaos_cstr_t str2,
     chaos_bool_t *equal
@@ -69,7 +69,7 @@ chaos_status_t chaos_strcmp(
  * @param[in] substr Substring to search for
  * @param[out] found Output boolean: CHAOS_TRUE if found
  */
-chaos_status_t chaos_strstr(
+extern chaos_status_t chaos_strstr(
     const chaos_cstr_t str,
     const chaos_cstr_t substr,
     chaos_bool_t *found

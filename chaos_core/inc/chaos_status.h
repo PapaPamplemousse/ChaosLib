@@ -24,9 +24,10 @@ typedef chaos_u32_t chaos_status_t;
 typedef enum
 {
     CHAOS_SEVERITY_OK      = 0x00U, /**< Operation successful. */
-    CHAOS_SEVERITY_WARNING = 0x01U, /**< Operation succeeded with potential issues. */
-    CHAOS_SEVERITY_ERROR   = 0x02U, /**< Operation failed, but system remains stable. */
-    CHAOS_SEVERITY_FATAL   = 0x03U  /**< Unrecoverable failure. */
+    CHAOS_INFORMATION      = 0x01U, /**< Informational message (non-error). */
+    CHAOS_SEVERITY_WARNING = 0x02U, /**< Operation succeeded with potential issues. */
+    CHAOS_SEVERITY_ERROR   = 0x03U, /**< Operation failed, but system remains stable. */
+    CHAOS_SEVERITY_FATAL   = 0x04U  /**< Unrecoverable failure. */
 } chaos_severity_t;
 
 /* ============================================================= */
@@ -64,7 +65,8 @@ typedef enum
     CHAOS_ERRCLASS_OVERFLOW      = 0x03U, /**< Computation or buffer overflow. */
     CHAOS_ERRCLASS_INVALID_PARAM = 0x04U, /**< An argument is invalid. */
     CHAOS_ERRCLASS_NOT_SUPPORTED = 0x05U, /**< Feature not implemented or supported. */
-    CHAOS_ERRCLASS_INTERNAL      = 0x06U  /**< Internal logic or system error. */
+    CHAOS_ERRCLASS_INTERNAL      = 0x06U, /**< Internal logic or system error. */
+    CHAOS_ERRCLASS_MEMORY        = 0x07U /**< Memory allocation or access error. */
 } chaos_errclass_t;
 
 /* ============================================================= */
@@ -102,6 +104,19 @@ typedef enum
 } chaos_string_code_t;
 
 
+typedef enum
+{
+    CHAOS_ALLOC_OK                = 0x00U, /**< Allocation operation successful. */
+    CHAOS_INVALID_ALLOC_SIZE      = 0x01U, /**< Requested allocation size is invalid. */
+    CHAOS_NO_MEMORY               = 0x02U, /**< Insufficient memory available for allocation. */
+    CHAOS_INVALID_POINTER         = 0x03U, /**< Pointer provided to free is invalid. */
+    CHAOS_ALREADY_INITIALIZED     = 0x04U, /**< Allocator has already been initialized. */
+    CHAOS_NOT_INITIALIZED         = 0x05U, /**< Allocator has not been initialized. */
+    CHAOS_ALLOC_ALIGNMENT_ERROR   = 0x06U, /**< Memory alignment requirement not met. */
+    CHAOS_ALLOC_DOUBLE_FREE       = 0x07U, /**< Attempted to free a block that is already free. */
+    CHAOS_ALLOC_DISABLED          = 0xFEU,  /**< Allocation feature is disabled. */
+    CHAOS_ALLOC_UNKNOWN           = 0xFFU  /**< Generic or unidentified allocation error. */
+} chaos_alloc_code_t;
 /* ============================================================= */
 /* STATUS ENCODING                                               */
 /* ============================================================= */
@@ -155,7 +170,6 @@ typedef enum
 /**
  * @brief Predefined status indicating a successful operation.
  */
-#define CHAOS_STATUS_OK \
-    CHAOS_STATUS_MAKE(CHAOS_SEVERITY_OK, CHAOS_MODULE_NONE, CHAOS_ERRCLASS_NONE, 0U)
+#define CHAOS_STATUS_OK 0x00000000U /**< Operation completed successfully. */
 
 #endif /* CHAOS_STATUS_H */

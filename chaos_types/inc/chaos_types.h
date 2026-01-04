@@ -1,8 +1,8 @@
 /**
  * @file chaos_types.h
  * @brief Fully self-contained type definitions with guaranteed sizes.
- * * This header provides a set of primitive types and macros for use in 
- * freestanding or embedded environments where the standard library 
+ * * This header provides a set of primitive types and macros for use in
+ * freestanding or embedded environments where the standard library
  * (libc) might be unavailable or restricted.
  * @note Compile-time validation of type widths is performed via static assertions.
  * @author PapaPamplemousse
@@ -46,9 +46,9 @@ typedef signed short       chaos_i16_t;
 typedef unsigned short     chaos_u16_t;
 
 /** @brief Signed 32-bit integer. */
-typedef signed long        chaos_i32_t;
+typedef signed int        chaos_i32_t;
 /** @brief Unsigned 32-bit integer. */
-typedef unsigned long      chaos_u32_t;
+typedef unsigned int      chaos_u32_t;
 
 #if defined(CHAOS_ENABLE_INT64) && (CHAOS_ENABLE_INT64 == 1)
 /** @brief Signed 64-bit integer. (Optional: requires CHAOS_ENABLE_INT64) */
@@ -93,10 +93,27 @@ typedef chaos_u8_t chaos_bool_t;
 /** @brief Type used for object sizes (equivalent to size_t). */
 typedef chaos_u32_t chaos_size_t;
 
-/** @brief Type used for pointer subtraction results (equivalent to ptrdiff_t). */
-typedef chaos_i32_t chaos_ptrdiff_t;
+
 
 /** @} */
+
+/* ============================================================= */
+/* POINTER-SIZED INTEGER TYPES                                   */
+/* ============================================================= */
+
+#if !defined(CHAOS_PTR_WIDTH)
+    #error "CHAOS_PTR_WIDTH must be defined (32 or 64)"
+#elif (CHAOS_PTR_WIDTH == 64)
+    typedef chaos_u64_t chaos_uintptr_t;
+    typedef chaos_i64_t chaos_ptrdiff_t;
+#elif (CHAOS_PTR_WIDTH == 32)
+    typedef chaos_u32_t chaos_uintptr_t;
+    typedef chaos_i32_t chaos_ptrdiff_t;
+#else
+    #error "Unsupported CHAOS_PTR_WIDTH value"
+#endif
+
+
 
 
 /* ============================================================= */
@@ -145,7 +162,7 @@ typedef chaos_char_t *chaos_cstr_t;
 
 /**
 * @brief Static assertion macro for C99.
-* * Triggers a compilation error if the condition is false by declaring 
+* * Triggers a compilation error if the condition is false by declaring
 * an array with a negative size.
 * @param cond The condition to evaluate.
 * @param name A unique identifier for the assertion (used in the type name).

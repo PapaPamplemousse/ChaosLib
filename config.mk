@@ -35,9 +35,10 @@ WARNINGS := \
 # =============================
 # CHAOS OPTIONS
 # =============================
+CHAOS_PTR_WIDTH        := 64
 CHAOS_ENABLE_ASSERT    := 1
 CHAOS_ENABLE_ALLOC     := 1
-CHAOS_ENABLE_LOG       := 1
+CHAOS_ALLOC_ALIGNMENT  := 8U
 CHAOS_ENABLE_FLOAT 	   := 1
 CHAOS_ENABLE_INT64     := 1
 CHAOS_STRICT_ABI_CHECK := 0

@@ -57,9 +57,10 @@ CFLAGS := $(CFLAGS_BASE) $(CFLAGS_OPT)
 
 # Map config.mk variables to C Preprocessor defines
 DEFINES := \
+	-DCHAOS_PTR_WIDTH=$(CHAOS_PTR_WIDTH) \
     -DCHAOS_ENABLE_ASSERT=$(CHAOS_ENABLE_ASSERT) \
     -DCHAOS_ENABLE_ALLOC=$(CHAOS_ENABLE_ALLOC) \
-    -DCHAOS_ENABLE_LOG=$(CHAOS_ENABLE_LOG) \
+	-DCHAOS_ALLOC_ALIGNMENT=$(CHAOS_ALLOC_ALIGNMENT) \
     -DCHAOS_ENABLE_FLOAT=$(CHAOS_ENABLE_FLOAT) \
 	-DCHAOS_ENABLE_INT64=$(CHAOS_ENABLE_INT64) \
 	-DCHAOS_STRICT_ABI_CHECK=$(CHAOS_STRICT_ABI_CHECK)
@@ -125,12 +126,32 @@ asm: $(ALL_OBJS)
 	$(foreach obj,$(ALL_OBJS),$(OBJDUMP) -d $(obj) > $(obj:.o=.asm);)
 
 # Print build configuration
+# ------------------------------------------------------------------------------
+# TOOLS & UTILITIES
+# ------------------------------------------------------------------------------
+
+# Print build configuration
 info:
-	@echo "--- CHAOSLIB BUILD INFO ---"
-	@echo "Selected Modules: $(SELECTED_MODULES)"
-	@echo "Build Type:       $(BUILD_TYPE)"
-	@echo "Compiler:         $(CC)"
-	@echo "Library Path:     $(FINAL_LIB)"
+	@echo "========================================================="
+	@echo "             CHAOSLIB BUILD CONFIGURATION                "
+	@echo "========================================================="
+	@echo " [GENERAL]"
+	@echo "  Build Type      : $(BUILD_TYPE)"
+	@echo "  Compiler        : $(CC)"
+	@echo "  Standard        : $(C_STANDARD)"
+	@echo "  Library Path    : $(FINAL_LIB)"
+	@echo ""
+	@echo " [MODULES]"
+	@echo "  Active Modules  : $(SELECTED_MODULES)"
+	@echo ""
+	@echo " [FEATURES STATUS]"
+	@echo "  Pointer Width   : $(CHAOS_PTR_WIDTH)"
+	@echo "  Assertions      : $(if $(filter 1,$(CHAOS_ENABLE_ASSERT)),[ON],[OFF])"
+	@echo "  Allocator       : $(if $(filter 1,$(CHAOS_ENABLE_ALLOC)),[ON] (Align: $(CHAOS_ALLOC_ALIGNMENT)),[OFF])"
+	@echo "  Float Support   : $(if $(filter 1,$(CHAOS_ENABLE_FLOAT)),[ON],[OFF])"
+	@echo "  Int64 Support   : $(if $(filter 1,$(CHAOS_ENABLE_INT64)),[ON],[OFF])"
+	@echo "  Strict ABI      : $(if $(filter 1,$(CHAOS_STRICT_ABI_CHECK)),[ON],[OFF])"
+	@echo "========================================================="
 
 # Clean build artifacts
 clean:

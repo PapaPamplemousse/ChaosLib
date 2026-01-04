@@ -34,7 +34,7 @@ all: $(TEST_BINS)
 
 %: %.c
 	@echo "Building test $@"
-	$(CC) $(CFLAGS) $(INC_FLAGS) $< $(LIBS) -o $@
+	$(CC) $(CFLAGS) $(CFLAGS_CONFIG) $(INC_FLAGS) $< $(LIBS) -o $@
 
 run: all
 	@for test in $(TEST_BINS); do \

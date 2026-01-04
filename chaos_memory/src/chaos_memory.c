@@ -2,7 +2,7 @@
 #include "chaos_assert.h"
 
 /* ============================================================= */
-/* MEMCPY                                                           */
+/* MEMCPY                                                        */
 /* ============================================================= */
 chaos_status_t chaos_memcpy(void *dst, const void *src, chaos_size_t size)
 {
@@ -45,7 +45,7 @@ chaos_status_t chaos_memmove(void *dst, const void *src, chaos_size_t size)
     chaos_assert_param((size != 0U), &status, CHAOS_SEVERITY_WARNING, CHAOS_MODULE_MEMORY, CHAOS_MEM_SIZE_ZERO);
     chaos_assert_param((dst != src), &status, CHAOS_SEVERITY_WARNING, CHAOS_MODULE_MEMORY, CHAOS_MEM_SRC_EQ_DST);
 
-    /* Perform move if no errors */ 
+    /* Perform move if no errors */
     if (status == CHAOS_STATUS_OK)
     {
         /* Determine copy direction based on overlap */
